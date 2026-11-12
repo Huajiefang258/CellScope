@@ -68,7 +68,7 @@ def prepare_measurement(label_mask: np.ndarray, output_dir: Path, stem: str,
     output_dir.mkdir(parents=True, exist_ok=True)
     temp_root = Path(temp_root)
     temp_root.mkdir(parents=True, exist_ok=True)
-    temp_dir = Path(tempfile.mkdtemp(prefix="cellscope_ij_", dir=str(temp_root)))
+    temp_dir = Path(tempfile.mkdtemp(prefix="simplecs_ij_", dir=str(temp_root)))
 
     label_path = temp_dir / "labels.tif"
     # ImageJ 1.x opens uncompressed 16-bit TIFF reliably.

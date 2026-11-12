@@ -1,21 +1,21 @@
 <a id="中文"></a>
 
-# CellScope
+# SimpleCellSegmentation
 
 <p align="center"><b>中文</b> | <a href="#english">English</a></p>
 
 <p align="center">
   <img src="docs/yy_lab_before.png" width="48%" alt="标注前的原始显微图像">
-  <img src="docs/yy_lab_after.png" width="48%" alt="CellScope 标注后的图像">
+  <img src="docs/yy_lab_after.png" width="48%" alt="SimpleCellSegmentation 标注后的图像">
 </p>
 <p align="center"><sub>标注前 / 标注后 · 示例图像来自天津医科大学 YY Lab；版权归原实验室所有。</sub></p>
 <p align="center"><a href="docs/yy_lab_before.png">查看标注前大图</a> · <a href="docs/yy_lab_after.png">查看标注后大图</a></p>
 
 **Cellpose + ImageJ 细胞计数与面积测量桌面工具。**
 
-> **说明：CellScope 只是一个更方便的操作工具 GUI。识别/分割工具来自 Cellpose，面积计算工具来自 ImageJ；本项目不重新实现分割或面积算法。**
+> **说明：SimpleCellSegmentation 只是一个更方便的操作工具 GUI。识别/分割工具来自 Cellpose，面积计算工具来自 ImageJ；本项目不重新实现分割或面积算法。**
 
-CellScope 把 Cellpose 自动分割、人工校正计数和 ImageJ 面积测量整合到一个独立界面中，适合 DAPI / WGS（膜染色）等 2D 显微图像。
+SimpleCellSegmentation（简称 **SimpleCS**）把 Cellpose 自动分割、人工校正计数和 ImageJ 面积测量整合到一个独立界面中，适合 DAPI / WGS（膜染色）等 2D 显微图像。
 
 - Cellpose 自动标注，支持编号；人工增删细胞、切换计数状态
 - 模式一：自动全部计数；模式二：逐个确认
@@ -23,7 +23,7 @@ CellScope 把 Cellpose 自动分割、人工校正计数和 ImageJ 面积测量�
 - 调用 ImageJ 1.54g（headless）导出细胞 1…N 的面积表
 - 模型权重不随程序分发，在界面内按需下载（推荐 cyto3）
 
-![CellScope 界面](docs/screenshot.png)
+![SimpleCellSegmentation 界面](docs/screenshot.png)
 
 ---
 
@@ -47,9 +47,9 @@ CellScope 把 Cellpose 自动分割、人工校正计数和 ImageJ 面积测量�
 ### 方式一：一键安装（推荐）
 
 1. 下载本仓库（Code → Download ZIP）并解压。
-2. 双击 **`CellScope-Setup.exe`**（带 CellScope 图标的安装启动器；也可以运行 `Install_CellScope.bat`）。
+2. 双击 **`SimpleCellSegmentation-Setup.exe`**（带 SimpleCellSegmentation 图标的安装启动器；也可以运行 `Install_SimpleCellSegmentation.bat`）。
 3. 按提示选择安装目录、可选模型（默认 cyto3）和是否安装 ImageJ。
-4. 安装完成后使用桌面 / 开始菜单中的 **CellScope** 快捷方式启动。
+4. 安装完成后使用桌面 / 开始菜单中的 **SimpleCellSegmentation** 快捷方式启动。
 
 安装程序会：
 
@@ -60,8 +60,8 @@ CellScope 把 Cellpose 自动分割、人工校正计数和 ImageJ 面积测量�
 - 创建快捷方式
 
 > 安装需要网络连接；首次下载依赖可能需要 10–30 分钟，请保持窗口打开。
-> CellScope-Setup.exe 使用与应用相同的图标；如果 Windows SmartScreen 提示未知发布者，可选择“更多信息 → 仍要运行”，或直接运行 Install_CellScope.bat。  
-> 安装目录默认：`%LOCALAPPDATA%\CellScope`，不需要管理员权限。
+> SimpleCellSegmentation-Setup.exe 使用与应用相同的图标；如果 Windows SmartScreen 提示未知发布者，可选择“更多信息 → 仍要运行”，或直接运行 Install_SimpleCellSegmentation.bat。  
+> 安装目录默认：`%LOCALAPPDATA%\SimpleCellSegmentation`，不需要管理员权限。
 
 ### 方式二：手动安装
 
@@ -81,7 +81,7 @@ python -m pip install -r requirements.txt
 运行：
 
 ```bat
-Start_CellScope.bat
+Start_SimpleCellSegmentation.bat
 ```
 
 或：
@@ -196,7 +196,7 @@ CPU 下 Cellpose-SAM 处理 1000×1000 约 1–3 分钟，`cyto3` 通常几秒�
 这一步不需要运行 ImageJ。测量和图像导出可以分别进行；批量结果载入后也可以单独导出图像。
 
 ```
-CellScope_results/
+SimpleCellSegmentation_results/
   <图像名>_cell_areas.csv    # 测量并导出表格
   <图像名>_annotated.png     # 导出标注图像
   <图像名>_labels.tif        # 导出标注图像
@@ -236,7 +236,7 @@ CSV 表头为 `Cell,Area_px2` 或 `Cell,Area_um2`。面积由 ImageJ 1.54g 的 `
 ## 目录结构
 
 ```
-CellScope-open/
+SimpleCellSegmentation-open/
   app.py                     程序入口
   cellpose_worker.py         Cellpose 子进程 worker
   download_model.py          模型下载
@@ -256,9 +256,9 @@ CellScope-open/
     cp4/cellpose             Cellpose 4 / Cellpose-SAM
   assets/                    图标
   installer 文件：
-    CellScope-Setup.exe      带 CellScope 图标的安装启动器
-    Install_CellScope.bat    一键安装入口（备用）
-    Install_CellScope.ps1    安装程序
+    SimpleCellSegmentation-Setup.exe      带 SimpleCellSegmentation 图标的安装启动器
+    Install_SimpleCellSegmentation.bat    一键安装入口（备用）
+    Install_SimpleCellSegmentation.ps1    安装程序
 ```
 
 ---
@@ -299,24 +299,24 @@ Cellpose 代码已随仓库放在 `vendor/` 中，无需额外安装 Cellpose �
 
 <a id="english"></a>
 
-# CellScope (English)
+# SimpleCellSegmentation (English)
 
 <p align="center"><a href="#中文">中文</a> | <b>English</b></p>
 
 <p align="center">
   <img src="docs/yy_lab_before.png" width="48%" alt="Original microscopy image before annotation">
-  <img src="docs/yy_lab_after.png" width="48%" alt="Image after CellScope annotation">
+  <img src="docs/yy_lab_after.png" width="48%" alt="Image after SimpleCellSegmentation annotation">
 </p>
 <p align="center"><sub>Before / after annotation · Sample image courtesy of Tianjin Medical University YY Lab; copyright remains with the lab.</sub></p>
 <p align="center"><a href="docs/yy_lab_before.png">Full-size before</a> · <a href="docs/yy_lab_after.png">Full-size after</a></p>
 
 **A desktop GUI for Cellpose segmentation + manual correction + ImageJ area measurement.**
 
-> **Important: CellScope is only a convenience GUI. Cell detection/segmentation is powered by Cellpose; area calculation is powered by ImageJ. This project does not reimplement the segmentation or measurement algorithms.**
+> **Important: SimpleCellSegmentation is only a convenience GUI. Cell detection/segmentation is powered by Cellpose; area calculation is powered by ImageJ. This project does not reimplement the segmentation or measurement algorithms.**
 
-CellScope combines automatic Cellpose segmentation, manual cell correction and ImageJ area measurement in a single window. It is intended for 2D microscopy images such as DAPI / WGS (membrane-stained) cells.
+SimpleCellSegmentation (abbreviated **SimpleCS**) combines automatic Cellpose segmentation, manual cell correction and ImageJ area measurement in a single window. It is intended for 2D microscopy images such as DAPI / WGS (membrane-stained) cells.
 
-![CellScope interface](docs/screenshot_en.png)
+![SimpleCellSegmentation interface](docs/screenshot_en.png)
 
 ## Highlights
 
@@ -324,7 +324,7 @@ CellScope combines automatic Cellpose segmentation, manual cell correction and I
 - Mode 1 counts all detected cells; Mode 2 asks you to confirm cells one by one. Switching modes keeps labels and does not re-run Cellpose.
 - Manual scale calibration: enter a known real length (e.g. 20 µm), click two points, and get µm/px. If the line is within 5° of horizontal/vertical, the app offers to snap it.
 - Edge-only or translucent fill display, with per-state colours, opacity and edge width. Fill on/off is inside the style panel, which is **non-modal and live**.
-- Batch queue: drop multiple images and let CellScope annotate them in the background; edit the first result while the next images are still processing.
+- Batch queue: drop multiple images and let SimpleCellSegmentation annotate them in the background; edit the first result while the next images are still processing.
 - ImageJ 1.54g (headless) measures and exports a cell 1…N area table. Annotated PNG and label TIFF images are exported separately with **Export annotated image…**, without re-running ImageJ.
 - Interface and this README are available in **中文 / English**. Use the language button in the app header.
 - Model weights are not bundled; download them from the app (cyto3 recommended).
@@ -336,13 +336,13 @@ CellScope combines automatic Cellpose segmentation, manual cell correction and I
 ### Option A: one-click installer (recommended)
 
 1. Download / clone this repository and extract it.
-2. Double-click **`CellScope-Setup.exe`** (installer launcher with the CellScope icon; `Install_CellScope.bat` also works).
+2. Double-click **`SimpleCellSegmentation-Setup.exe`** (installer launcher with the SimpleCellSegmentation icon; `Install_SimpleCellSegmentation.bat` also works).
 3. Choose the install folder, optional models (cyto3 by default) and whether to install ImageJ.
-4. Launch **CellScope** from the desktop / Start menu shortcut.
+4. Launch **SimpleCellSegmentation** from the desktop / Start menu shortcut.
 
 The installer checks/downloads Python 3.10, creates a virtual environment, installs PyTorch CPU / PyQt5 and other dependencies, downloads ImageJ 1.54g, optionally downloads Cellpose models to `%USERPROFILE%\.cellpose\models`, and creates a shortcut. Internet access is required; no administrator rights are normally needed.
 
-The `CellScope-Setup.exe` launcher uses the same icon as the app. If Windows SmartScreen shows an unknown publisher warning, choose **More info → Run anyway**, or run `Install_CellScope.bat` instead.
+The `SimpleCellSegmentation-Setup.exe` launcher uses the same icon as the app. If Windows SmartScreen shows an unknown publisher warning, choose **More info → Run anyway**, or run `Install_SimpleCellSegmentation.bat` instead.
 
 ### Option B: run from source
 
@@ -352,7 +352,7 @@ Requirements: Windows 10/11 64-bit, Python 3.10–3.12, ImageJ 1.54g (`ij.jar` +
 python -m pip install -r requirements.txt
 ```
 
-Place ImageJ in `ImageJ\` next to the app (with `ij.jar` and `jre\bin\java.exe`), or set `IMAGEJ_HOME`. Then run `Start_CellScope.bat`.
+Place ImageJ in `ImageJ\` next to the app (with `ij.jar` and `jre\bin\java.exe`), or set `IMAGEJ_HOME`. Then run `Start_SimpleCellSegmentation.bat`.
 
 ## Workflow
 
@@ -379,7 +379,7 @@ Place ImageJ in `ImageJ\` next to the app (with `ij.jar` and `jre\bin\java.exe`)
 ## Output
 
 ```
-CellScope_results/
+SimpleCellSegmentation_results/
   <image>_cell_areas.csv      # measure & export table
   <image>_annotated.png       # export annotated image
   <image>_labels.tif          # export annotated image
@@ -388,15 +388,15 @@ CellScope_results/
 ## Project layout
 
 ```
-CellScope-open/
+SimpleCellSegmentation-open/
   app.py                      entry point
   cellpose_worker.py          Cellpose subprocess worker
   download_model.py           model downloader
   cellcounter/                main window, viewer, model, i18n, style, batch, ImageJ helpers
   vendor/                     bundled Cellpose source
   docs/                       screenshots
-  CellScope-Setup.exe         installer launcher with CellScope icon
-  Install_CellScope.bat/.ps1  installer (fallback)
+  SimpleCellSegmentation-Setup.exe         installer launcher with SimpleCellSegmentation icon
+  Install_SimpleCellSegmentation.bat/.ps1  installer (fallback)
 ```
 
 ## Licensing

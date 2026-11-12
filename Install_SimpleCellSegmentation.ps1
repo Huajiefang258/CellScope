@@ -13,7 +13,7 @@ $ErrorActionPreference = "Stop"
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
 $Source = $PSScriptRoot
-$Temp = Join-Path $env:TEMP ("CellScope_install_" + [Guid]::NewGuid().ToString("N").Substring(0, 8))
+$Temp = Join-Path $env:TEMP ("SimpleCS_install_" + [Guid]::NewGuid().ToString("N").Substring(0, 8))
 New-Item -ItemType Directory -Path $Temp -Force | Out-Null
 
 function Write-Step([string]$Text) {
@@ -89,21 +89,21 @@ $modelOptions = @(
 
 Write-Host ""
 Write-Host "============================================" -ForegroundColor DarkCyan
-Write-Host "  CellScope 安装程序" -ForegroundColor White
+Write-Host "  SimpleCellSegmentation 安装程序" -ForegroundColor White
 Write-Host "  Cellpose + ImageJ 细胞计数" -ForegroundColor Gray
 Write-Host "============================================" -ForegroundColor DarkCyan
 Write-Host "安装到当前用户目录，不需要管理员权限。"
 Write-Host "需要网络连接；首次依赖安装可能需要 10–30 分钟。"
 
 if (-not $Unattended) {
-    $defaultDir = Join-Path $env:LOCALAPPDATA "CellScope"
+    $defaultDir = Join-Path $env:LOCALAPPDATA "SimpleCellSegmentation"
     $inputDir = Read-Host "安装目录（直接回车 = $defaultDir）"
     if ([string]::IsNullOrWhiteSpace($inputDir)) { $InstallDir = $defaultDir }
     else { $InstallDir = $inputDir }
 }
 
 if ([string]::IsNullOrWhiteSpace($InstallDir)) {
-    $InstallDir = Join-Path $env:LOCALAPPDATA "CellScope"
+    $InstallDir = Join-Path $env:LOCALAPPDATA "SimpleCellSegmentation"
 }
 $InstallDir = [Environment]::ExpandEnvironmentVariables($InstallDir.Trim().Trim('"'))
 $InstallDir = [IO.Path]::GetFullPath($InstallDir)
@@ -155,7 +155,7 @@ New-Item -ItemType Directory -Path $App -Force | Out-Null
 $files = @(
     "app.py", "cellpose_worker.py", "download_model.py", "requirements.txt",
     "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md",
-    "Start_CellScope.bat", "Run_Debug.bat", "Create_Shortcut.bat",
+    "Start_SimpleCellSegmentation.bat", "Run_Debug.bat", "Create_Shortcut.bat",
     "Create_Shortcut.ps1", "Install_Dependencies.bat"
 )
 foreach ($name in $files) {
@@ -272,23 +272,23 @@ Write-Step "6/6 创建快捷方式"
 if (-not (Test-Path -LiteralPath $venvPythonw)) {
     $venvPythonw = $venvPython
 }
-$icon = Join-Path $App "assets\cellscope.ico"
+$icon = Join-Path $App "assets\simplecellsegmentation.ico"
 $targetArgs = '"' + (Join-Path $App "app.py") + '"'
-$mainLnk = Join-Path $InstallDir "CellScope.lnk"
+$mainLnk = Join-Path $InstallDir "SimpleCellSegmentation.lnk"
 New-Shortcut $mainLnk $venvPythonw $targetArgs $App $icon
 Write-Ok "已创建：$mainLnk"
 
 $programs = [Environment]::GetFolderPath("Programs")
 if ($programs) {
-    $menuDir = Join-Path $programs "CellScope"
+    $menuDir = Join-Path $programs "SimpleCellSegmentation"
     New-Item -ItemType Directory -Path $menuDir -Force | Out-Null
-    New-Shortcut (Join-Path $menuDir "CellScope.lnk") $venvPythonw $targetArgs $App $icon
+    New-Shortcut (Join-Path $menuDir "SimpleCellSegmentation.lnk") $venvPythonw $targetArgs $App $icon
     Write-Ok "已创建开始菜单快捷方式"
 }
 if (-not $NoDesktopShortcut) {
     $desktop = [Environment]::GetFolderPath("Desktop")
     if ($desktop) {
-        New-Shortcut (Join-Path $desktop "CellScope.lnk") $venvPythonw $targetArgs $App $icon
+        New-Shortcut (Join-Path $desktop "SimpleCellSegmentation.lnk") $venvPythonw $targetArgs $App $icon
         Write-Ok "已创建桌面快捷方式"
     }
 }
@@ -308,7 +308,7 @@ Write-Host "模型位置：$env:USERPROFILE\.cellpose\models"
 Write-Host "推荐模型：cyto3"
 
 if (-not $Unattended) {
-    $launch = Read-Host "现在启动 CellScope？[Y/n]"
+    $launch = Read-Host "现在启动 SimpleCellSegmentation？[Y/n]"
     if ($launch -notmatch '^[nN]') {
         Start-Process -FilePath $mainLnk
     }

@@ -16,8 +16,8 @@ from PyQt5.QtWidgets import (
     QLineEdit, QListWidget, QMenu, QSpinBox, QTabWidget, QTableWidget, QWidget,
 )
 
-SETTINGS_ORG = "CellScope"
-SETTINGS_APP = "CellScope"
+SETTINGS_ORG = "SimpleCellSegmentation"
+SETTINGS_APP = "SimpleCellSegmentation"
 SETTINGS_KEY = "ui/language"
 
 ZH = "zh"
@@ -59,7 +59,7 @@ _EN_TEXT = {
     "打开结果文件夹": "Open results folder",
     "关闭": "Close",
     # -- header / cards
-    "CellScope · Cellpose + ImageJ 细胞计数": "CellScope · Cellpose + ImageJ cell counting",
+    "SimpleCellSegmentation · Cellpose + ImageJ 细胞计数": "SimpleCellSegmentation · Cellpose + ImageJ cell counting",
     "Cellpose 自动标注 · 人工校正 · ImageJ 面积测量":
         "Cellpose segmentation · manual correction · ImageJ area measurement",
     "显示样式": "Display style",
@@ -175,7 +175,7 @@ _EN_TEXT = {
     "实际像素 1:1": "Actual pixels 1:1",
     "显示编号": "Show numbers",
     "授权信息": "License info",
-    "关于 CellScope": "About CellScope",
+    "关于 SimpleCellSegmentation": "About SimpleCellSegmentation",
     "文件": "File",
     "编辑": "Edit",
     "视图": "View",
@@ -316,7 +316,7 @@ _EN_TEXT = {
     "旧版 Cellpose-SAM，泛化能力较好。":
         "Legacy Cellpose-SAM with good generalisation.",
     # -- license
-    "CellScope 授权": "CellScope license",
+    "SimpleCellSegmentation 授权": "SimpleCellSegmentation license",
     "首次使用需要输入工具密钥；验证一次后，本机永久解锁。":
         "Enter the tool key on first use; this PC is permanently unlocked after verification.",
     "请输入工具密钥": "Enter tool key",
@@ -333,7 +333,7 @@ _EN_TEXT = {
     "cyto（v3）": "cyto (v3)",
     "图像文件": "Image files",
     "所有文件": "All files",
-    "CellScope 标注": "CellScope labels",
+    "SimpleCellSegmentation 标注": "SimpleCellSegmentation labels",
     "添加到批量处理": "Add to batch",
     "没有候选细胞": "No candidate cells",
     "当前没有可选取的细胞。": "No selectable cells.",
@@ -382,7 +382,7 @@ _EN_TEXT = {
         "Clear all batch tasks? Running tasks will stop. Saved labels are not deleted immediately but will no longer appear in the queue.",
     "批量 Cellpose 正在后台运行。请等待完成，或在批量列表清空任务后再手动运行。":
         "Batch Cellpose is running in the background. Wait for it to finish, or clear the batch list before running manually.",
-    "CellScope 标注 (*.npz)": "CellScope labels (*.npz)",
+    "SimpleCellSegmentation 标注 (*.npz)": "SimpleCellSegmentation labels (*.npz)",
     "已切换到模式一：标注和计数保留，无需重跑 Cellpose；可用“全部设为已计数”统一状态。":
         "Switched to Mode 1: labels and counts are kept; no need to re-run Cellpose. Use “Set all counted” to unify states.",
     "已切换到模式二：标注和计数保留，无需重跑 Cellpose；可用“全部设为未计数”统一状态。":

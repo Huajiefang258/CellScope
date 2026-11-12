@@ -1,7 +1,7 @@
 # Third-party notices
 
-CellScope bundles or depends on the following third-party components. Their
-licenses apply to those components; CellScope's own code is GPL-3.0 (see
+SimpleCellSegmentation bundles or depends on the following third-party components. Their
+licenses apply to those components; SimpleCellSegmentation's own code is GPL-3.0 (see
 `LICENSE`).
 
 ## Cellpose / Cellpose-SAM
@@ -33,7 +33,7 @@ BSD-3-Clause notice:
 ## PyQt5
 
 - Project: https://riverbankcomputing.com/software/pyqt/
-- License: GPL-3.0 or commercial. CellScope is distributed under GPL-3.0 to
+- License: GPL-3.0 or commercial. SimpleCellSegmentation is distributed under GPL-3.0 to
   comply with the GPL option.
 
 ## ImageJ

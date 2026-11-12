@@ -1,6 +1,6 @@
 """Download Cellpose model weights with progress events.
 
-Weights are not shipped with CellScope. The UI starts this script when the
+Weights are not shipped with SimpleCellSegmentation. The UI starts this script when the
 user clicks "检查 / 下载当前模型". Existing partial downloads are resumed.
 """
 

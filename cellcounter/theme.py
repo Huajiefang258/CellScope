@@ -1,4 +1,4 @@
-"""Dark microscopy-friendly theme for CellScope."""
+"""Dark microscopy-friendly theme for SimpleCellSegmentation."""
 
 from PyQt5.QtGui import QColor, QFont
 

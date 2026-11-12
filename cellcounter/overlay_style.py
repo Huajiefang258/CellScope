@@ -9,8 +9,8 @@ from PyQt5.QtGui import QColor
 
 from . import theme
 
-SETTINGS_ORG = "CellScope"
-SETTINGS_APP = "CellScope"
+SETTINGS_ORG = "SimpleCellSegmentation"
+SETTINGS_APP = "SimpleCellSegmentation"
 
 
 def _color(value, fallback: str) -> QColor:

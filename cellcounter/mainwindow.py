@@ -180,7 +180,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         TEMP_ROOT.mkdir(parents=True, exist_ok=True)
-        self.setWindowTitle("CellScope · Cellpose + ImageJ 细胞计数")
+        self.setWindowTitle("SimpleCellSegmentation · Cellpose + ImageJ 细胞计数")
         self.resize(1500, 960)
         self.setMinimumSize(1120, 720)
         self.setAcceptDrops(True)
@@ -328,7 +328,8 @@ class MainWindow(QMainWindow):
 
         titles = QVBoxLayout()
         titles.setSpacing(0)
-        t = QLabel("CellScope")
+        t = QLabel("SimpleCS")
+        t.setToolTip("SimpleCellSegmentation")
         t.setObjectName("appTitle")
         s = QLabel("Cellpose 自动标注 · 人工校正 · ImageJ 面积测量")
         s.setObjectName("appSubtitle")
@@ -873,7 +874,7 @@ class MainWindow(QMainWindow):
         self.act_help = QAction("操作说明", self)
         self.act_help.setShortcut("F1")
         self.act_help.triggered.connect(self.show_shortcuts)
-        self.act_about = QAction("关于 CellScope", self)
+        self.act_about = QAction("关于 SimpleCellSegmentation", self)
         self.act_about.triggered.connect(self.show_about)
 
         mb = self.menuBar()
@@ -1649,7 +1650,7 @@ class MainWindow(QMainWindow):
             self.lbl_warning.show()
         else:
             self.lbl_warning.hide()
-        self.out_dir = loaded.path.parent / "CellScope_results"
+        self.out_dir = loaded.path.parent / "SimpleCellSegmentation_results"
         self._update_outdir_label()
         self._populate_display_combo(loaded)
         self._populate_source_combo(loaded)
@@ -1744,7 +1745,7 @@ class MainWindow(QMainWindow):
             return
         source_kind, source_idx = self.combo_source.currentData()
         model = self.combo_model.currentData()
-        out_dir = Path(tempfile.mkdtemp(prefix="cellscope_cp_", dir=str(TEMP_ROOT)))
+        out_dir = Path(tempfile.mkdtemp(prefix="simplecs_cp_", dir=str(TEMP_ROOT)))
         out_npy = out_dir / "masks.npy"
         diameter = "auto" if self.chk_auto_dia.isChecked() else str(self.spin_dia.value())
         args = [
@@ -2024,7 +2025,7 @@ class MainWindow(QMainWindow):
         try:
             label_mask, ids = self.store.export_label_mask()
             if self.out_dir is None:
-                self.out_dir = self.loaded.path.parent / "CellScope_results"
+                self.out_dir = self.loaded.path.parent / "SimpleCellSegmentation_results"
             self.out_dir.mkdir(parents=True, exist_ok=True)
             stem = self.loaded.path.stem
             setup = prepare_measurement(
@@ -2082,7 +2083,7 @@ class MainWindow(QMainWindow):
                 self, i18n.translate("没有已计数细胞"),
                 i18n.translate("请先在模式一中运行 Cellpose，或在模式二中点击确认细胞。"))
             return
-        out_dir = self.out_dir or (self.loaded.path.parent / "CellScope_results")
+        out_dir = self.out_dir or (self.loaded.path.parent / "SimpleCellSegmentation_results")
         try:
             out_dir.mkdir(parents=True, exist_ok=True)
         except OSError:
@@ -2358,10 +2359,10 @@ class MainWindow(QMainWindow):
         if self.loaded is None or not self.store.has_cells:
             QMessageBox.information(self, "没有可保存的标注", "当前没有细胞标注。")
             return
-        default = str(self.loaded.path.with_suffix(".cellscope.npz"))
+        default = str(self.loaded.path.with_suffix(".simplecellsegmentation.npz"))
         path, _ = QFileDialog.getSaveFileName(
             self, i18n.translate("保存标注"), default,
-            i18n.translate("CellScope 标注 (*.npz)"))
+            i18n.translate("SimpleCellSegmentation 标注 (*.npz)"))
         if not path:
             return
         ids = sorted(self.store.metas)
@@ -2388,7 +2389,7 @@ class MainWindow(QMainWindow):
         self._clear_pending_random()
         path, _ = QFileDialog.getOpenFileName(
             self, i18n.translate("载入标注"), str(Path.home()),
-            i18n.translate("CellScope 标注 (*.npz)"))
+            i18n.translate("SimpleCellSegmentation 标注 (*.npz)"))
         if not path:
             return
         try:
@@ -2472,8 +2473,8 @@ class MainWindow(QMainWindow):
     def show_about(self):
         if i18n.get_language() == i18n.EN:
             QMessageBox.about(
-                self, "About CellScope",
-                "<b>CellScope 1.1 (open source)</b><br><br>"
+                self, "About SimpleCellSegmentation",
+                "<b>SimpleCellSegmentation 1.1 (open source)</b><br><br>"
                 "A convenience GUI for cell segmentation, manual correction and "
                 "area measurement.<br><br>"
                 "Segmentation is powered by Cellpose; area measurement is "
@@ -2482,8 +2483,8 @@ class MainWindow(QMainWindow):
                 "ImageJ 1.x is developed by NIH; PyQt5 follows GPL.")
             return
         QMessageBox.about(
-            self, "关于 CellScope",
-            "<b>CellScope 1.1（开源版）</b><br><br>"
+            self, "关于 SimpleCellSegmentation",
+            "<b>SimpleCellSegmentation 1.1（开源版）</b><br><br>"
             "一个更方便的操作工具 GUI：细胞分割、人工校正和面积测量。<br><br>"
             "识别工具来自 Cellpose；计算工具来自 ImageJ。<br><br>"
             "Cellpose 模型权重遵循其原始许可（CC-BY-NC）。<br>"

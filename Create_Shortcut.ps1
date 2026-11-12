@@ -17,15 +17,15 @@ if (-not (Test-Path -LiteralPath $app)) {
     Read-Host "Press Enter to exit"
     exit 1
 }
-$lnk = Join-Path $root "CellScope.lnk"
+$lnk = Join-Path $root "SimpleCellSegmentation.lnk"
 $ws = New-Object -ComObject WScript.Shell
 $s = $ws.CreateShortcut($lnk)
 $s.TargetPath = $pyw
 $s.Arguments = '"' + $app + '"'
 $s.WorkingDirectory = $root
-$icon = Join-Path $root "assets\cellscope.ico"
+$icon = Join-Path $root "assets\simplecellsegmentation.ico"
 if (Test-Path -LiteralPath $icon) { $s.IconLocation = $icon }
-$s.Description = "CellScope - Cellpose + ImageJ"
+$s.Description = "SimpleCellSegmentation - Cellpose + ImageJ"
 $s.WindowStyle = 1
 $s.Save()
 Write-Host "Shortcut created: $lnk" -ForegroundColor Green

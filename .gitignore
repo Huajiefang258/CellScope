@@ -5,7 +5,7 @@ __pycache__/
 venv/
 .venv/
 models/
-CellScope_results/
+SimpleCellSegmentation_results/
 *.lnk
 *.part
 build/
