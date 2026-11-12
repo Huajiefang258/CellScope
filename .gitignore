@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.log
+.tmp/
+venv/
+.venv/
+models/
+CellScope_results/
+*.lnk
+*.part
+build/
+dist/
+.idea/
+.vscode/

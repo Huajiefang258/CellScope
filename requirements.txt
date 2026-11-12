@@ -1,0 +1,15 @@
+numpy>=1.20
+scipy
+torch>=1.6
+torchvision
+tifffile
+imagecodecs
+opencv-python
+PyQt5
+fastremap
+natsort
+roifile
+fill-voids
+segment_anything
+tqdm
+Pillow

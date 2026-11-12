@@ -1,0 +1,19 @@
+﻿CellScope 安装说明
+==================
+
+1. 把压缩包解压到任意文件夹（路径不要有特殊字符）。
+2. 双击 CellScope-Setup.exe（带 CellScope 图标）；也可以运行 Install_CellScope.bat。
+3. 按提示选择：
+   - 安装目录（直接回车使用默认位置）
+   - 要下载的模型（直接回车 = cyto3，推荐）
+   - 是否安装 ImageJ（建议安装）
+4. 等待安装完成（首次需要下载 Python 依赖，可能需要 10–30 分钟）。
+5. 安装完成后，双击桌面或开始菜单中的 CellScope 快捷方式启动。
+
+需要网络连接。
+默认安装目录：%LOCALAPPDATA%\CellScope
+模型保存位置：%USERPROFILE%\.cellpose\models
+
+如果 Windows SmartScreen 提示未知发布者，可选择“更多信息 → 仍要运行”，或直接运行 Install_CellScope.bat。
+
+如果安装失败，请保留窗口中的错误信息，并检查网络后重新运行安装程序。
